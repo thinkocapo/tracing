@@ -4,9 +4,9 @@ steps:
         '--build-arg',
         'SENTRY_AUTH_TOKEN=${_SENTRY_AUTH_TOKEN}',
         '-t',
-        'gcr.io/$PROJECT_ID/react:2.3',
+        'gcr.io/$PROJECT_ID/react2',
         '-f',
-        './Dockerfile',
-        './react']
+        'Dockerfile',
+        '.']
 images:
-- gcr.io/$PROJECT_ID/react:2.3
+- gcr.io/$PROJECT_ID/react2

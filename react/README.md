@@ -11,7 +11,7 @@ Run in it's own Node container, served on a port
 
 #### Dev (Macbook docker host)
 1. ~~docker build -t react:2.0 .~~
-2. docker build --build-arg SENTRY_AUTH_TOKEN=1234567 -t react:2.0 .
+2. docker build --build-arg SENTRY_AUTH_TOKEN=1234567 -t react:2.X .
 3. docker build --build-arg SENTRY_AUTH_TOKEN=1234567 -t react:2.0 -f Dockerfile.dev .
 
 or from project root:

@@ -66,6 +66,7 @@ gsutil 4.47
 1. `cd flask` or other1, other2
 2. Build image in Cloud Build
 `gcloud builds submit --tag gcr.io/<PROJECT-ID>/<APP_NAME>`
+
 3. Run container in Cloud Run
 `gcloud run deploy --image gcr.io/<PROJECT-ID>/<APP_NAME> --platform managed`
 4. select 'us-central1'

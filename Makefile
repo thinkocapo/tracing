@@ -22,15 +22,15 @@ upload_sourcemaps:
 		upload-sourcemaps --url-prefix "~/$(PREFIX)" --validate react/build/$(PREFIX)
 
 # react/Dockerfile must consume the react/build/static/js, and RELEASE
+# needs SOURCE https://cloud.google.com/sdk/gcloud/reference/builds/submit#SOURCE
 cloud_build:
-	here...
+	gcloud builds submit --tag gcr.io/<PROJECT_ID>/react
 
 cloud_run:
-	here...
+	gcloud run deploy --image gcr.io/<PROJECT-ID>/react --platform managed
 
-
-
-
+# again for Flask app, now this is all sequential...need parallel
+# dockr-compose has 'link' feature too
 
 
 # VERSION=`sentry-cli releases -o testorg-az new -p will-frontend-react v123`

@@ -6,6 +6,8 @@ import nailsImg from "../assets/nails.png";
 import hammerImg from "../assets/hammer.png";
 import { testTypeIssue11, theCriticalIssue } from "../critical"
 const PORT = process.env.REACT_APP_PORT || 3001
+const FLASK_APP = process.env.REACT_APP_FLASK_APP || "http://localhost:3001/checkout"
+
 const request = require('request');
 
 const monify = n => (n / 100).toFixed(2);
@@ -134,7 +136,8 @@ class App extends Component {
     });
     // perform request (set transctionID as header and throw error appropriately)
     request.post({
-        url: `http://localhost:${PORT}/checkout`,
+        // url: `http://localhost:${PORT}/checkout`,
+        url: `${FLASK_APP}/checkout`,
         json: order,
         headers: {
           "X-Session-ID": this.sessionId,

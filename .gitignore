@@ -2,4 +2,6 @@
 *.pyc
 *.egg-info
 .vscode
+node_modules
+react/node_modules
 react/.env

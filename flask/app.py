@@ -98,4 +98,4 @@ def get_tools():
             rows = get_all_tools()
         except:
             raise "error getting tools"
-    return jsonify(str(rows))
+    return rows

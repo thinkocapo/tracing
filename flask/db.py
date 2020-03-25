@@ -13,6 +13,14 @@ HOST = os.getenv("HOST")
 DATABASE = os.getenv("DATABASE")
 USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
+print('HOST', HOST)
+print('DATABASE', DATABASE)
+print('USERNAME', USERNAME)
+print('PASSWORD', PASSWORD)
+
+if not HOST:
+    raise ValueError("No HOST set for Flask app")
+
 
 insert_query = """INSERT INTO tools(name, type, sku, image, price) 
                   VALUES (%s, %s, %s, %s, %s);"""
@@ -59,10 +67,10 @@ def list_dict_to_json(li):
 def get_connection():
     with sentry_sdk.start_span(op="psycopg2.connect"):
         connection = psycopg2.connect(
-            host="",
-            database="",
-            user="",
-            password="")
+            host=HOST,
+            database=DATABASE,
+            user=USERNAME,
+            password=PASSWORD)
     return connection 
 
 def add_tool(name = "Mallot", tool_type = "Hammer", image = "hammer.jpg"):
@@ -91,4 +99,5 @@ def get_all_tools():
         return rows
     except Exception as err:
         sentry_sdk.capture_exception(err)
+        raise Exception('get all tools failed')
         return 'fail'

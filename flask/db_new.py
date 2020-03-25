@@ -13,6 +13,14 @@ DATABASE = os.getenv("DATABASE")
 USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
 
+print('HOST db_new', HOST)
+print('DATABASE db_new', DATABASE)
+print('USERNAME db_new', USERNAME)
+print('PASSWORD db_new', PASSWORD)
+
+if not HOST:
+    raise ValueError("No HOST set for Flask app")
+
 insert_query = """INSERT INTO tools(name, type, sku, image, price) 
                   VALUES (%s, %s, %s, %s, %s);"""
 
@@ -50,9 +58,9 @@ db = sqlalchemy.create_engine(
     # postgres+pg8000://<db_user>:<db_pass>@/<db_name>?unix_sock=/cloudsql/<cloud_sql_instance_name>/.s.PGSQL.5432
     sqlalchemy.engine.url.URL(
         drivername='postgres+pg8000',
-        username="",
-        password="",
-        database="",
+        username=USERNAME,
+        password=PASSWORD,
+        database=DATABASE,
         query={
             'unix_sock': '/cloudsql/{}/.s.PGSQL.5432'.format(cloud_sql_connection_name)
         }

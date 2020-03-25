@@ -2,13 +2,11 @@ import os
 from flask import Flask, request, json, abort, make_response, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
-# from db import add_tool, get_all_tools
-from db_new import get_all_tools
+from db import add_tool, get_all_tools
+# from db_new import get_all_tools
     
-
 import sentry_sdk
 from sentry_sdk.integrations.flask import FlaskIntegration
-
 
 sentry_sdk.init(
     dsn="https://2ba68720d38e42079b243c9c5774e05c@sentry.io/1316515",

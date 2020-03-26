@@ -99,5 +99,6 @@ def get_all_tools():
         return rows
     except Exception as err:
         sentry_sdk.capture_exception(err)
+        # raise err ???
         raise Exception('get all tools failed')
         return 'fail'

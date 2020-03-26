@@ -96,6 +96,6 @@ def get_tools():
     with sentry_sdk.start_span(op="db read"):
         try:
             rows = get_all_tools()
-        except:
-            raise "error getting tools"
+        except Exception as err:
+            raise(err)
     return rows

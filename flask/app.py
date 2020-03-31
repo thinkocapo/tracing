@@ -46,15 +46,16 @@ Inventory = {
 }
 
 def process_order(cart):
-    global Inventory
-    tempInventory = Inventory
-    for item in cart:
-        if Inventory[item['id']] <= 0:
-            raise Exception("Not enough inventory for " + item['id'])
-        else:
-            tempInventory[item['id']] -= 1
-            print 'Success: ' + item['id'] + ' was purchased, remaining stock is ' + str(tempInventory[item['id']])
-    Inventory = tempInventory 
+    with sentry_sdk.start_span(op="check database"):
+        global Inventory
+        tempInventory = Inventory
+        for item in cart:
+            if Inventory[item['id']] <= 0:
+                raise Exception("Not enough inventory for " + item['id'])
+            else:
+                tempInventory[item['id']] -= 1
+                print 'Success: ' + item['id'] + ' was purchased, remaining stock is ' + str(tempInventory[item['id']])
+        Inventory = tempInventory 
 
 @app.before_request
 def sentry_event_context():
@@ -74,14 +75,14 @@ def sentry_event_context():
 
 @app.route('/checkout', methods=['POST'])
 def checkout():
+    with sentry_sdk.start_span(op="/api start"):
+        order = json.loads(request.data)
+        print "Processing order for: " + order["email"]
+        cart = order["cart"]
+        
+        process_order(cart)
 
-    order = json.loads(request.data)
-    print "Processing order for: " + order["email"]
-    cart = order["cart"]
-    
-    process_order(cart)
-
-    return 'Success'
+        return 'Success'
 
 # @app.route('/tool', methods=['POST'])
 # def new_tool():

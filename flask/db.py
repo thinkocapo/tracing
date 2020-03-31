@@ -50,7 +50,7 @@ def get_all_tools():
         with db.connect() as conn:
             # Execute the query and fetch all results
             results = conn.execute(
-                "SELECT * FROM tools"
+                "SELECT * FROM tools LIMIT 10" 
             ).fetchall()
             conn.close()
             

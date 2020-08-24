@@ -17,7 +17,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import logger from 'redux-logger'
 import rootReducer from './reducers'
 
-/* use this if sending test data to a proxy and not Sentry 
+// use this if sending test data to a proxy and not Sentry 
 function testData(DSN) {
   let KEY = DSN.split('@')[0]
   // only for local proxy, not proxy served by ngrok
@@ -26,11 +26,11 @@ function testData(DSN) {
   }
   const PROXY = 'localhost:3001'
   const MODIFIED_DSN_SAVE = KEY + '@' + PROXY + '/3'
-  const MODIFIED_DSN_SAVE = KEY + '@' + "3d19db15b56d.ngrok.io" + '/3'
+  // const MODIFIED_DSN_SAVE = KEY + '@' + "3d19db15b56d.ngrok.io" + '/3'
   return MODIFIED_DSN_SAVE
 }
 let DSN = testData(process.env.REACT_APP_DSN)
-console.log("> DSN ", DSN)*/
+console.log("> DSN ", DSN)
 
 const tracingOrigins = [
   'localhost', 

@@ -26,7 +26,8 @@ const tracingOrigins = [
 console.log('tracingOrigins', tracingOrigins)
 
 Sentry.init({
-    dsn: process.env.REACT_APP_DSN || 'https://0d52d5f4e8a64f5ab2edce50d88a7626@sentry.io/1428657',
+    dsn: "https://426a31c1b1614727b705cdece09484ff@o262702.ingest.sentry.io/5533979",
+    // dsn: process.env.REACT_APP_DSN || 'https://0d52d5f4e8a64f5ab2edce50d88a7626@sentry.io/1428657',
     release: process.env.REACT_APP_RELEASE,
     environment: "prod",
     debug: true,

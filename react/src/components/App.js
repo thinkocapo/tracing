@@ -211,15 +211,7 @@ class App extends Component {
             </button>
           </React.Fragment>
         )} showDialog>
-          {/* <ShoppingCart/> */}
-          <div>{this.state.message}</div>
-          {/* on click, this button sets an Object as a message, not a string. */}
-          {/* which will cause an error to occur in the component tree */}
-          <button
-            onClick={() => this.setState({ message: { text: "Hello World" } })}
-          >
-            Click here to change message!
-          </button>
+          <ShoppingCart/>
         </Sentry.ErrorBoundary>
       </div>
     );

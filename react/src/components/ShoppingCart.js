@@ -48,7 +48,7 @@ class ShoppingCart extends Component {
       }
     
       async checkout() {
-        // this.notDefined()
+        this.notDefined()
         const order = {
           cart: this.props.cart
         };

@@ -29,6 +29,10 @@ class ShoppingCart extends Component {
         this.resetCart = this.resetCart.bind(this);
       }
 
+      componentDidMount() {
+        this.iAmAnError()
+      }
+
       async performCheckoutOnServer (order) {
         let response = await fetch(`${BACKEND}/checkout`, {
           method: "POST",

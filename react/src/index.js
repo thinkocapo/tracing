@@ -33,7 +33,7 @@ Sentry.init({
     debug: true,
     beforeSend(event) {
       if (event.exception) {
-        Sentry.showReportDialog();
+        // Sentry.showReportDialog();
       }
       return event;
     },

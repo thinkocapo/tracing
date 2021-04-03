@@ -39,7 +39,12 @@ class ShoppingCart extends Component {
         }).catch((err) => { throw Error(err) });
     
         if (!response.ok) {
-          Sentry.captureException(new Error(response.status + " - " + (response.statusText || "INTERNAL SERVER ERROR")))
+          Sentry.withScope(function(scope) {
+            // Group errors together based on the request and response
+            let errorMessage = response.status + " - " + (response.statusText || "INTERNAL SERVER ERROR")
+            scope.setFingerprint(['POST', `${BACKEND}/checkout`, errorMessage, new Date().getDate()]);
+            Sentry.captureException(new Error(response.status + " - " + (response.statusText || "INTERNAL SERVER ERROR")))
+          });
           this.setState({ hasError: true, success: false });
         }
         

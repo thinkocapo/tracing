@@ -63,7 +63,10 @@ class App extends Component {
         throw new SyntaxError('syntactically invalid code')
       } catch (error) {
         console.log(error);
-        Sentry.captureException(error);
+        Sentry.withScope(function(scope) {
+          scope.setFingerprint(['{{ default }}', new Date().getDate()]);
+          Sentry.captureException(error);
+        });
       }
     } else {
       console.log('no errors on pageload')
